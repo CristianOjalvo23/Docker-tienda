@@ -16,8 +16,7 @@ services:
       - store_network
 
   backend:
-    build:
-      context: ./backend
+    image: TUUSUARIOREAL/tienda-backend:latest
 
     container_name: store_backend
 
@@ -36,8 +35,7 @@ services:
       - store_network
 
   frontend:
-    build:
-      context: ./frontend
+    image: TUUSUARIOREAL/tienda-frontend:latest
 
     container_name: store_frontend
 
