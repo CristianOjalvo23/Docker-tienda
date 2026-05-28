@@ -1,0 +1,25 @@
+# dependencies
+node_modules/
+
+# build
+dist/
+build/
+
+# env files
+.env
+backend/.env
+frontend/.env
+
+# logs
+*.log
+
+# docker
+docker-data/
+
+# vscode
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+

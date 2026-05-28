@@ -1,0 +1,61 @@
+services:
+
+  mongo:
+    image: mongo:7
+    container_name: store_mongo
+
+    restart: unless-stopped
+
+    volumes:
+      - mongo_data:/data/db
+
+    ports:
+      - "27017:27017"
+
+    networks:
+      - store_network
+
+  backend:
+    build:
+      context: ./backend
+
+    container_name: store_backend
+
+    restart: unless-stopped
+
+    env_file:
+      - ./backend/.env
+
+    depends_on:
+      - mongo
+
+    ports:
+      - "8080:8080"
+
+    networks:
+      - store_network
+
+  frontend:
+    build:
+      context: ./frontend
+
+    container_name: store_frontend
+
+    restart: unless-stopped
+
+    depends_on:
+      - backend
+
+    ports:
+      - "5173:80"
+
+    networks:
+      - store_network
+
+volumes:
+  mongo_data:
+
+networks:
+  store_network:
+    driver: bridge
+
